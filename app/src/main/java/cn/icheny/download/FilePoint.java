@@ -1,7 +1,7 @@
 package cn.icheny.download;
 
 /**
- * Created by Cheny on 2017/4/29.
+ * @author ocean
  */
 
 public class FilePoint {

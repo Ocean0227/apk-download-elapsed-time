@@ -15,7 +15,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * Created by Cheny on 2017/4/29.
+ * @author ocean
  */
 
 public class DownloadTask extends Handler {
@@ -23,6 +23,8 @@ public class DownloadTask extends Handler {
     private final int THREAD_COUNT = 4;//线程数
     private FilePoint mPoint;
     private long mFileLength;
+
+    public static int apk_len;
 
     private volatile boolean isDownloading = false;
     private AtomicInteger childCanleCount = new AtomicInteger(0);//子线程取消数量
@@ -111,6 +113,8 @@ public class DownloadTask extends Handler {
                     }
                     // 获取资源大小
                     mFileLength = response.body().contentLength();
+                    apk_len = (int) ((mFileLength / 1024) / 1024);
+                    Log.d(TAG, "包大小:" + (mFileLength / 1024 / 1024) + "MB");
                     close(response.body());
                     // 在本地创建一个与资源同样大小的文件来占位
                     mTmpFile = new File(mPoint.getFilePath(), mPoint.getFileName() + ".tmp");

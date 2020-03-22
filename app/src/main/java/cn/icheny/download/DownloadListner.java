@@ -3,7 +3,7 @@ package cn.icheny.download;
 /**
  * 下载监听
  *
- * @author Cheny
+ * @author ocean
  */
 public interface DownloadListner {
     void onFinished();

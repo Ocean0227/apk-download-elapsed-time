@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 下载管理器，断点续传
  *
- * @author Cheny
+ * @author ocean
  */
 public class DownloadManager {
 

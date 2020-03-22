@@ -26,21 +26,22 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 /**
- * @author Cheny
+ * @author ocean
  */
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 001;
-    TextView tv_file_name1, tv_progress1, tv_time_cacl1, tv_file_name2, tv_progress2, tv_time_cacl2;
+    TextView tv_file_name1, tv_file_content_len1, tv_progress1, tv_time_cacl1, tv_file_name2, tv_file_content_len2, tv_progress2, tv_time_cacl2;
     Button btn_download1, btn_download2, btn_download_all;
     ProgressBar pb_progress1, pb_progress2;
 
     DownloadManager mDownloadManager;
-    String xesUrl = "https://acj4.pc6.com/pc6_soure/2020-3/GRKrJosWjXLlC4BQze53DdAx.apk";
+    String xesUrl = "https://xeswxapp.oss-cn-beijing.aliyuncs.com/test/apk/app-xesmarket-Release_71101.apk";
     String yfdUrl = "https://www.yuanfudao.com/download?userType=student&vendor=PCOfficialWebsite01&keyfrom=yfd-mkt-xiaoxue-xt782-BDPZ-boya-pcss-title-yw-x&client=android";
 
     long startTime = 0;
     long middleTime = 0;
     int endTime = 0;
+    private int apk_content_length;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initViews() {
         tv_file_name1 = findViewById(R.id.tv_file_name1);
+        tv_file_content_len1 = findViewById(R.id.tv_file_content_len1);
         tv_progress1 = findViewById(R.id.tv_progress1);
         tv_time_cacl1 = findViewById(R.id.tv_time_cacl1);
         pb_progress1 = findViewById(R.id.pb_progress1);
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         tv_file_name1.setText("学而思");
 
         tv_file_name2 = findViewById(R.id.tv_file_name2);
+        tv_file_content_len2 = findViewById(R.id.tv_file_content_len2);
         tv_progress2 = findViewById(R.id.tv_progress2);
         tv_time_cacl2 = findViewById(R.id.tv_time_cacl2);
         pb_progress2 = findViewById(R.id.pb_progress2);
@@ -146,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     tv_time_cacl1.setText("计时中");
                     startTime = System.currentTimeMillis();
                     Log.d("耗时", "下载开始时间" + startTime);
+
 
                 } else {
                     btn_download1.setText("下载");
@@ -262,9 +266,16 @@ public class MainActivity extends AppCompatActivity {
         Log.d("耗时", "下载完成时间" + middleTime );
         endTime = (int)((middleTime - startTime)/1000);
         Log.d("耗时", "下载耗时" + endTime );
-        if ("xes" == str)
-            tv_time_cacl1.setText("下载耗时(秒):" + Integer.toString(endTime));
-        else
-            tv_time_cacl2.setText("下载耗时(秒):" + Integer.toString(endTime));
+
+        apk_content_length = DownloadTask.apk_len;
+
+        if ("xes" == str){
+            tv_time_cacl1.setText("下载耗时(秒): " + Integer.toString(endTime));
+            tv_file_content_len1.setText("包大小: " + apk_content_length + "MB");
+        } else{
+            tv_time_cacl2.setText("下载耗时(秒): " + Integer.toString(endTime));
+            tv_file_content_len2.setText("包大小: " + apk_content_length + "MB");
+        }
+
     }
 }
