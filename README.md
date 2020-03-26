@@ -1,6 +1,4 @@
-# Okhttp-Multiple-Thread-Download-Demo
-Android Okhttp多线程断点续传下载Demo
-> 最近项目需要使用到断点下载功能，笔者比较喜欢折腾，想方设法抛弃SharedPreferences，尤其是sqlite作记录辅助，改用临时记录文件的形式记录下载进度，本文以断点下载为例。先看看demo运行效果图：
+demo运行效果图：
 
 <img src="http://media.icheny.cn/image/20170504002218302.gif" width="200px" alt="效果图" />
 
@@ -623,7 +621,3 @@ public class DownloadManager {
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;下载管理器通过一个Map将下载链接（url，教程图方便使用url的方式。建议使用其他唯一标识，毕竟一般url长度都很长，会影响一定性能。另外，考虑一个项目中可能需要下载同一个文件到不同的目录，url做索引显得生硬）与对应的下载任务( DownloadTask )绑定在一起，以便于根据url判断或获取对应的下载任务，进行下载,取消和暂停等操作。
-   OK，时间关系，文章到此结束，有问题或需要Demo源码的朋友下方留言。半夜了。。。浓浓的倦意。。。
-
- &nbsp;&nbsp;&nbsp;&nbsp;2017年6月2日更新：鉴于CSDN库无缘无故把我以前文章上传的Demo源码以及库弄没了，决定还是传github靠谱，下面贴上Demo源码地址：https://github.com/ausboyue/Okhttp-Multiple-Thread-Download-Demo  
-临时赶时间写的，难免有些bug，有问题请及时“issue”。。。
